@@ -3,7 +3,7 @@ package member
 import (
 	"net/http"
 
-	"go-oa/internal/server"
+	"go-oa/internal/service"
 
 	"github.com/gin-gonic/gin"
 )
@@ -24,5 +24,5 @@ func NewMember(ms MemberServer) *Member {
 }
 
 type MemberServer interface {
-	GetMemberByID(id int) (*server.MemberInfo, error)
+	GetMemberByID(id int) (*service.MemberInfo, error)
 }

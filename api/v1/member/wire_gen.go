@@ -8,7 +8,7 @@ package member
 import (
 	"github.com/google/wire"
 	"go-oa/internal/biz"
-	"go-oa/internal/server"
+	"go-oa/internal/service"
 )
 
 // Injectors from wire.go:
@@ -16,13 +16,13 @@ import (
 // InitializeEvent 声明injector的函数签名
 func InitializeMember() *Member {
 	member := biz.NewMember()
-	memberServer := server.NewMemberServer(member)
+	memberServer := service.NewMemberServer(member)
 	memberMember := NewMember(memberServer)
 	return memberMember
 }
 
 // wire.go:
 
-var BizNewMember = wire.NewSet(biz.NewMember, wire.Bind(new(server.MemberModel), new(*biz.Member)))
+var BizNewMember = wire.NewSet(biz.NewMember, wire.Bind(new(service.MemberModel), new(*biz.Member)))
 
-var NewMemberServer = wire.NewSet(server.NewMemberServer, wire.Bind(new(MemberServer), new(*server.MemberServer)))
+var NewMemberServer = wire.NewSet(service.NewMemberServer, wire.Bind(new(MemberServer), new(*service.MemberServer)))

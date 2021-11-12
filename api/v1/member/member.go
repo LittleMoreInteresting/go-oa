@@ -3,16 +3,18 @@ package member
 import (
 	"net/http"
 
+	"go-oa/internal/biz"
 	"go-oa/internal/server"
 
 	"github.com/gin-gonic/gin"
 )
 
 func GetMemberByID(g *gin.Context) {
-	m := NewMember(&server.MemberServer{})
+	mm := biz.NewMember()
+	ms := server.NewMemberServer(mm)
+	m := NewMember(ms)
 	mi, _ := m.ms.GetMemberByID(1)
-
-	g.JSON(http.StatusOK, gin.H{"id": mi.Id})
+	g.JSON(http.StatusOK, gin.H{"id": mi.Id, "mobile": mi.Mobile})
 }
 
 type Member struct {

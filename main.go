@@ -9,19 +9,14 @@ import (
 	"syscall"
 	"time"
 
-	"go-oa/api/v1/member"
-
-	"github.com/gin-gonic/gin"
+	"go-oa/api/router"
 )
 
 func main() {
-	router := gin.Default()
-
-	router.GET("/", member.GetMemberByID)
 
 	srv := &http.Server{
 		Addr:    ":8081",
-		Handler: router,
+		Handler: router.Router,
 	}
 
 	go func() {

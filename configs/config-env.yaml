@@ -1,0 +1,7 @@
+name: GO-OA
+DB:
+  driver:Mysql
+  user:root
+  passwd:root
+  port:3306
+
